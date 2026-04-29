@@ -2,17 +2,32 @@ name: CI Spotify Project
 on:
   push:
     branches: [main, develop]
+
 jobs:
-  validate:
+  validate-files:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Validar existencia de archivos
+      - name: Checkout de codigo
+        uses: actions/checkout@v3
+
+      - name: Validar archivos principales
         run: |
-          ls README.md setup_project.sh project_report.py docker-compose.yml infraestructura-base.yaml app/Dockerfile helper/Dockerfile
-      - name: Pipeline Simulation
-        run: |
-          echo "Source: OK"
-          echo "Build: OK"
-          echo "Validate: OK"
-          echo "Ready for Deploy: OK"
+          ls README.md
+          ls setup_project.sh
+          ls project_report.py
+          ls docker-compose.yml
+          ls infraestructura-base.yaml
+          ls app/Dockerfile
+          ls helper/Dockerfile
+
+  simulate-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Source
+        run: echo "Descargando código de GitHub..."
+      - name: Build
+        run: echo "Creando imágenes de Docker..."
+      - name: Validate
+        run: echo "Validando configuración..."
+      - name: Ready for Deploy
+        run: echo "El proyecto está listo para AWS."
