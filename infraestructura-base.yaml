@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Propuesta de infraestructura para Spotify-Cloud.
+
+Resources:
+  S3BucketMultimedia:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: spotify-multimedia-storage-giselle
+
+  EC2InstanceServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0c55b159cbfafe1f0
+      Tags:
+        - Key: Name
+          Value: SpotifyWebServer
